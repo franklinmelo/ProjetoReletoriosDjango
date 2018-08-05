@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Confirm</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Quer realmente deletar o relatorio do {{relatorio}}?</h2>
+        <button type="submit">Comfirmar</button>
+    </form>
+</body>
+</html>

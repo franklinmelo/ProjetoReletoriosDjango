@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Relatórios</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/stylo.css' %}">
+
+    {# Load the tag library #}
+    {% load bootstrap4 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container-fluid h-100 bg-light py-5">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="principal col-12 col-sm-8 col-lg-6 p-5 border br-2 shadow">
+            {% if relatorio %}
+                 <h1 class="text-center">Editar Relatório</h1>
+            {% else %}
+                <h1 class="text-center">Novo Relatório</h1>
+            {% endif%}
+
+            <form method="POST" class="form-horizontal">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <label>Nome:</label>
+                        {{form.nome}}
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label>Data:</label>
+                        {{form.data}}
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label>Hora de Entrada:</label>
+                        {{form.horarioEntrada}}
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label>Hora de Saida:</label>
+                        {{form.horarioSaida}}
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label>Relatorio:</label>
+                        {{form.relatorio}}
+                    </div>
+                </div>
+
+
+
+                {% buttons %}
+                <button type="submit" class="btn btn-success">
+                    Enviar
+                </button>
+
+                <button onclick="redirectIndex()" type="button" class="btn btn-primary">
+                    Inicio
+                </button>
+
+                {% if relatorio %}
+                <button onclick="redirectDelete()" type="button" class="btn btn-danger">
+                    Delete
+                </button>
+                <script>
+                    function redirectDelete(){
+                    location.href="{% url 'delete_relatorio' relatorio.id %}";
+                    }
+                </script>
+                {% endif%}
+
+                <script>
+                    function redirectIndex(){
+                    location.href="{% url 'list_relatorio'%}";
+                    }
+                </script>
+
+                {% endbuttons %}
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

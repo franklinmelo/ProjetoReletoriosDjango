@@ -1,0 +1,18 @@
+body {
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.container-fluid{
+    background: url(/static/imagens/bg.jpg) repeat;
+    margin:0 auto;
+}
+
+
+.principal{
+    background-color:#EFEFE3;
+    position:absolute;
+}
+
+
+
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatorios</title>
+
+     {# Load the tag library #}
+    {% load bootstrap4 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+
+</head>
+<body>
+    <ul>
+        {% for relatorio in relatorios%}
+        <a href="{% url 'update_relatorio' relatorio.id %}">
+            <li>{{relatorio}}</li>
+        </a>
+        {% endfor %}
+    </ul>
+
+    <button type="button" class="btn btn-success" onclick="redirectForm()">Novo Relatorio</button>
+    <script>
+        function redirectForm(){
+            location.href="{% url 'create_relatorio' %}"
+        }
+    </script>
+</body>
+</html>
